@@ -1,4 +1,3 @@
-angular-nav-drawer
+angular-swipe-drawer
 ==================
 
-AngularJS nav drawer
