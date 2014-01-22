@@ -1,0 +1,162 @@
+@white: #fff; /*white*/
+@black: #000; /*black*/
+@greyLight: #999; /*light-grey*/
+@greyDark: @black + 20%; /*dark-grey*/
+@red: #c60e0e;
+
+@mq-mobile: ~"all and (max-width: 750px)";
+
+@topBarH: 35px;
+@drawerW: 250px;
+@drawerItemH: 50px;
+
+// NAVIGATION DRAWER STRUCTURAL STYLING
+html {
+	// overflow on html breaks transitions in FF/FF android
+	// change in overflow settings also breaks transitions in FF/FF android
+
+	body {
+		overflow-x: hidden;
+
+		#overflowWrapper {
+			overflow-x: hidden;
+
+			#topBar {
+				display: none;
+			}
+
+			#drawer {
+				display: none;
+			}
+		}
+	}
+
+	@media @mq-mobile {
+
+		body {
+
+			#overflowWrapper {
+
+				#topBar {
+					height: @topBarH;
+					display: block;
+					position: fixed;
+					top: 0;
+					left: 0;
+					z-index: 100;
+					@media @mq-mobile {
+						display: block;
+					}
+				}
+
+				#drawer {
+					display: block;
+					height: 100%;
+					position: fixed;
+					top: @topBarH;
+					left: 0;
+					padding-bottom: 32px; //required to account for the browser's bar
+				}
+
+				#page {
+					height: 100%; //massive performance increase for transition
+					width: 100%; //massive performance increase for transition
+					.transition(all,0.1s,linear,0s);
+					.transform( translate3d(0px,0px,0px) );
+
+					* { // improve transition performance
+						.transform( translateZ(0) );
+					}
+				}
+			}
+
+			&.open {
+				overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
+
+				#overflowWrapper {
+					// seems like some browsers don't accept overflow:hidden on html/body
+					// http://stackoverflow.com/questions/14270084/overflow-xhidden-doesnt-prevent-content-from-overflowing-in-mobile-browsers
+					overflow: hidden; //setting this breaks FF/FF android (ie a change in overflow setting)
+
+					#page {
+						.transform( translate3d(@drawerW,0px,0px) );
+					}
+				}
+			}
+		}
+	}
+}
+// ! NAVIGATION DRAWER STRUCTURAL STYLING
+
+
+// GENERAL STYLING
+#topBar {
+	width: 100%;
+	color: white;
+	border-bottom: 1px solid @black;
+	background-color: @greyDark;
+	font-family: "Lobster", sans-serif;
+	body.open & {
+		background-color: @red;
+	}
+
+	i {
+		color: white;
+		font-size: 25px;
+		line-height: @topBarH;
+		cursor: pointer;
+		padding: 5px 10px;
+		display: inline;
+	}
+
+	h1 {
+		display: inline;
+		font-family: "Lobster", sans-serif;
+		line-height: @topBarH;
+		font-size: 25px;
+	}
+}
+
+
+#drawer {
+	* { // don't want the user accidentally highlighting a navigation element while swiping
+		.user-select(none);
+	}
+
+	ul {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		background-color: @black + 20%;
+
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 0 !important; //since scrollbars don't auto disappear when they aren't needed in the first place
+		}
+
+		li.item {
+			margin: 0;
+			padding: 0;
+			width: @drawerW;
+			background-color: @black + 20%;
+			border-bottom: 1px solid grey;
+
+			display: block;
+			color: white;
+			padding: 10px;
+			font-size: 18px;
+			height: @drawerItemH;
+
+		}
+	}
+}
+
+
+.panel {
+	width: 100%;
+	height: 300px;
+	border-bottom: 1px solid @white;
+	background-image: url('images/image.jpg');
+	overflow: hidden;
+}
