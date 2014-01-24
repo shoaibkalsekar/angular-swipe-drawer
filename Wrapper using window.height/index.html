@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:ng="http://angularjs.org" id="ng-app" data-ng-app="app">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+	<title></title>
+
+	<!-- IE7 polyfill for json -->
+	<!--[if lt IE 8]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.6/json3.min.js"></script>
+	<![endif]-->
+	<!-- Media Queries polyfill -->
+	<!--<script type="text/javascript" src="scripts/css3-mediaqueries.js"></script>-->
+	<!-- AngularJS -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular.min.js"></script>
+	<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-touch.js"></script>-->
+	<script type="text/javascript" src="scripts/angular-touch.js"></script>
+	<!-- Modernizer -->
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+	<!-- Project Files -->
+
+	<script type="text/javascript" src="scripts/main.js"></script>
+
+	<!-- LESS.js -->
+	<!-- Server Side -->
+	<!--<link rel="stylesheet" type="text/css" href="styles/main.css" />-->
+	<!-- Client Side -->
+	<link rel="stylesheet/less" type="text/css" href="styles/main.less" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.5.0/less.min.js"></script>
+
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+</head>
+
+<body id="body"
+	  data-ng-controller="DrawerController"
+	  data-ng-class="{open:drawer}">
+
+	<div id="overflowWrapper">
+
+		<div id="topBar" data-ng-click="drawerToggle()">
+			<i class="fa fa-bars"></i>
+			<h1>MyDrawer</h1>
+		</div>
+
+		<div id="drawer"
+			 data-ng-swipe-left="drawerClose()">
+
+			<ul>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+				<li class="item"></li>
+			</ul>
+
+		</div>
+
+		<div id="page"
+			 data-ng-swipe-right="drawerOpen()"
+			 data-ng-swipe-left="drawerClose()"
+			 data-ng-click="drawerClose()">
+
+			<div class="panel"><img src="styles/images/image.jpg" /></div>
+			<div class="panel"></div>
+			<div class="panel"></div>
+			<div class="panel"></div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
